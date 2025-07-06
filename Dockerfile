@@ -12,16 +12,16 @@ RUN wget https://archive.apache.org/dist/tomcat/tomcat-10/v10.1.7/bin/apache-tom
     rm apache-tomcat-10.1.7.zip && \
     mv apache-tomcat-10.1.7 /opt/tomcat
 
-# ✅ Clean default webapps AFTER Tomcat is moved
+# ✅ Add this line: make startup script executable
+RUN chmod +x /opt/tomcat/bin/catalina.sh
+
+# Clean default webapps
 RUN rm -rf /opt/tomcat/webapps/*
 
-# ✅ Copy your WAR file to webapps
+# Copy your WAR file
 COPY ROOT.war /opt/tomcat/webapps/ROOT.war
 
-# ✅ Optional: Check contents (for debug)
-# RUN ls -la /opt/tomcat/webapps/
-
-# Expose Tomcat default port
+# Expose port
 EXPOSE 8080
 
 # Start Tomcat
