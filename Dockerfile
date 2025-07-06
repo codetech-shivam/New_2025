@@ -3,15 +3,10 @@
 FROM eclipse-temurin:18-jdk
 
 # Install dependencies to download and unzip Tomcat
-RUN apt-get update && \
-    apt-get install -y wget unzip && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update &&     apt-get install -y wget unzip &&     rm -rf /var/lib/apt/lists/*
 
 # Download and unzip Apache Tomcat 10.1.24
-RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.zip && \
-    unzip apache-tomcat-10.1.24.zip && \
-    mv apache-tomcat-10.1.24 /opt/tomcat && \
-    rm apache-tomcat-10.1.24.zip
+RUN wget https://downloads.apache.org/tomcat/tomcat-10/v10.1.24/bin/apache-tomcat-10.1.24.zip &&     unzip apache-tomcat-10.1.24.zip &&     mv apache-tomcat-10.1.24 /opt/tomcat &&     rm apache-tomcat-10.1.24.zip
 
 # Clean default webapps
 RUN rm -rf /opt/tomcat/webapps/*
